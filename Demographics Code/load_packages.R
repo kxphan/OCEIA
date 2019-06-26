@@ -1,0 +1,15 @@
+# Load all of these libraries before proceeding.
+
+library("usmap")
+library("totalcensus")
+library(tidycensus)
+library(tidyverse)
+library(ipumsr)
+library(dplyr)
+library(mosaic)
+library(tigris)
+library(purrr)
+library(sf)
+library(sp)
+library(leaflet)
+library(rgdal)
