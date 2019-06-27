@@ -1,9 +1,6 @@
 # All functions used to calculate populations. May require some cleaning and documentation.
+detach(package:plyr)
 
-agg <- function(var) {
-  var %>%
-    summarize(total=sum(total))
-}
 getPop <- function(var){
   get_acs(geography = "county",
           variables = var,
@@ -33,16 +30,7 @@ getPopOak <- function(var) {
     summarize(total=sum(estimate))
 }
 
-getPal <- function(domain) {
-  colorBin(
-    palette="YlOrRd",
-    domain = domain,
-    bins = 9,
-    pretty = FALSE
-  )
-}
-
-detach(package:plyr)
+# previously was called "result", may need to rename function in other scripts.
 result <- function(var) {
   get_acs(geography=census_geog,
           variables = var,
@@ -56,6 +44,7 @@ result <- function(var) {
     filter(total > 0)
 }
 
+# Mostly used for the HTC script.
 combine <- function(dataset) {
   # Get names of neighborhoods first
   dataset <- merge(dataset, sf_nbhd,
@@ -75,4 +64,13 @@ combine <- function(dataset) {
                    by.y="nhood")
 
   return(dataset)
+}
+
+getPal <- function(domain) {
+  colorBin(
+    palette="YlOrRd",
+    domain = domain,
+    bins = 9,
+    pretty = FALSE
+  )
 }

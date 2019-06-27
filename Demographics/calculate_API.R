@@ -1,26 +1,5 @@
 # Calculating all API Population Requests
 
-# Read in files
-# =============
-SBO_SF  <- getSBOSummary("SBO_SF_2012.csv")
-SBO_Bay <- getSBOSummary("SBO_Bay_2012.csv")
-SBO_Oak <- getSBOSummary("SBO_Oak_2012.csv")
-
-# Clean
-getSBOSummary <- function(csv_string) {
-  SBO <- read.csv(csv_string) %>%
-    filter(RACE_GROUP.id == 60)
-  SBO$FIRMALL <- as.numeric(as.character(SBO$FIRMALL))
-  SBO$FIRMPDEMP <- as.numeric(as.character(SBO$FIRMPDEMP))
-  SBO$EMP <- as.numeric(as.character(SBO$EMP))
-  SBO <- SBO %>%
-    group_by(NAICS.id, NAICS.display.label) %>%
-    summarize(sum(FIRMALL),
-              sum(FIRMPDEMP),
-              sum(EMP, na.rm = TRUE))
-}
-
-# =================
 # Total Population
 var <- "B02001_005"
 
