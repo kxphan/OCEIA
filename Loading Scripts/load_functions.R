@@ -1,25 +1,35 @@
-# All functions used to calculate populations. May require some cleaning and documentation.
+## All functions used to calculate populations. 
+## May require some cleaning and documentation.
+
 detach(package:plyr)
 
+# Get all populations
 getPop <- function(var){
   get_acs(geography = "county",
           variables = var,
           county    = county_bay,
           state     = census_state,
-          year      = census_yr) %>%
+          year      = census_yr,
+          cache_table = TRUE) %>%
     group_by(NAME, variable) %>%
     summarize(total=sum(estimate))
 }
+
+# Sample of filtering by multiple counties
 getPopBay <- function(var) {
   getPop(var) %>%
     group_by(variable) %>%
     summarise(total=sum(total))
 }
+
+# Sample of filtering by a county
 getPopSF <- function(var) {
   getPop(var) %>%
   filter(NAME=="San Francisco County, California") #%>%
     #summarize(total=sum(total))
 }
+
+# Sample of filtering by a city/place
 getPopOak <- function(var) {
   get_acs(geography = "place",
           variables = var,
@@ -44,33 +54,27 @@ result <- function(var) {
     filter(total > 0)
 }
 
-# Mostly used for the HTC script.
-combine <- function(dataset) {
-  # Get names of neighborhoods first
-  dataset <- merge(dataset, sf_nbhd,
-                   by.x="GEOID",
-                   by.y="GEOID") %>%
-    group_by(Neighborhood) %>%
-    summarize(total=sum(total))
-
-  dataset$NAME.x <- NULL
-  dataset$NAME.y <- NULL
-  dataset$GEOID <- NULL
-  dataset$NAMELSAD <- NULL
-
-  # Merge to get the polygons
-  dataset <- merge(dataset, analysis_nbhd,
-                   by.x="Neighborhood",
-                   by.y="nhood")
-
-  return(dataset)
+# Search through each of the labels for a specific keyword.
+search_label_keyword <- function(year, survey, keyword) {
+  load_variables(census_yr, census_dset, cache = TRUE) %>% 
+    filter(str_detect(tolower(label), tolower(keyword)))
 }
 
-getPal <- function(domain) {
-  colorBin(
-    palette="YlOrRd",
-    domain = domain,
-    bins = 9,
-    pretty = FALSE
-  )
+# search through each of the concepts for a specific keyword
+search_category_keyword <-function(year, survey, keyword) {
+  load_variables(census_yr, census_dset, cache = TRUE) %>% 
+    filter(str_detect(tolower(concept), tolower(keyword)))
 }
+
+# Join the results from getPop with label of variable. 
+# (For example, B02015_001 --> Estimate!!Total)
+# Currently only using San Francisco numbers.
+# TODO: Expand to all other options and functions.
+get_results_keyword <- function(dataset) {
+  merge(dataset, getPopSF(dataset$name), by.x='name', by.y='variable')
+}
+
+# Run a sample script
+sample_two <- search_category_keyword(2017, "acs5", "Language Spoken")
+sample_one <- search_label_keyword(2017, "acs5", "Spanish")
+sample_final <- get_results_keyword(sample_one)

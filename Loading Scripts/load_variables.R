@@ -21,4 +21,4 @@ county_bay <- c(097, 041, 055, 095, 013, 081, 075, 001, 085)
 
 # Look at all Census Variables
 v15 <- load_variables(census_yr, census_dset, cache = TRUE)
-v16 <- load_variables(2012, census_dset)
+v16 <- load_variables(census_yr, "acs1")
