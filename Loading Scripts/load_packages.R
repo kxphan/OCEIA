@@ -1,9 +1,14 @@
 # Load all of these libraries before proceeding.
 
+# Dev Tools
+library(devtools)
+library(openxlsx)
+
 # Data manipulation
 library(dplyr)
 library(mosaic)
 library(purrr)
+library(xlsx)
 
 # Census specific things
 library("usmap")

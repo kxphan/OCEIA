@@ -1,8 +1,6 @@
 ## All functions used to calculate populations. 
 ## May require some cleaning and documentation.
 
-detach(package:plyr)
-
 # Get all populations
 getPop <- function(var, year, survey){
   get_acs(geography = "county",
@@ -44,14 +42,17 @@ getPopOak <- function(var, year, survey) {
 
 # Search through each of the labels for a specific keyword.
 search_label_keyword <- function(year, survey, keyword) {
-  dataset <- load_variables(year = year, dataset = survey, cache = TRUE) %>% 
-    filter(str_detect(tolower(label), tolower(keyword)))
-  merge(dataset, getPopSF(dataset$name, year, survey), by.x='name', by.y='variable')
+  dataset <- load_variables(year = year, dataset = survey, cache = TRUE) 
+  dataset %>% 
+    subset(stringr::str_detect(base::tolower(label), base::tolower(keyword)))
+  dataset_results <- getPopSF(dataset$name, year, survey)
+  merge(dataset, dataset_results, by.x='name', by.y='variable')
 }
 
 # search through each of the concepts for a specific keyword
 search_category_keyword <-function(year, survey, keyword) {
-  dataset <- load_variables(year, survey, cache = TRUE) %>% 
-    filter(str_detect(tolower(concept), tolower(keyword)))
+  dataset <- load_variables(year, survey, cache = TRUE) 
+  dataset %>% 
+    filter(str_detect(tolower(dataset$concept), tolower(keyword)))
   merge(dataset, getPopSF(dataset$name, year, survey), by.x='name', by.y='variable')
 }
