@@ -14,6 +14,18 @@ getPop <- function(var, year, survey){
     summarize(total = sum(estimate))
 }
 
+getPopTract <- function(var, year, survey){
+  get_acs(geography = "tract",
+          variables = var,
+          county    = census_county,
+          state     = census_state,
+          year      = year,
+          cache_table = TRUE,
+          survey    = survey) %>%
+    group_by(GEOID, NAME, variable) %>%
+    summarize(total = sum(estimate))
+}
+
 # Sample of filtering by multiple counties
 getPopBay <- function(var, year, survey) {
   getPop(var, year, survey) %>%
@@ -21,11 +33,29 @@ getPopBay <- function(var, year, survey) {
     summarise(total=sum(total))
 }
 
+
 # Sample of filtering by a county
 getPopSF <- function(var, year, survey) {
   getPop(var, year, survey) %>%
-  filter(NAME=="San Francisco County, California") #%>%
-    #summarize(total=sum(total))
+  filter(NAME=="San Francisco County, California")
+}
+
+getDistrict <- function(var, year, survey, district){
+  temp1 <- getPopTract(var, year, survey)
+  temp2 <- tract_to_place %>% 
+    filter(District == district)
+  merge(temp1, temp2, by = "GEOID") %>%
+    group_by(District, variable) %>%
+    summarize(total = sum(total))
+}
+
+getDistrictSum <- function(var, year, survey, district){
+  temp1 <- getPopTract(var, year, survey)
+  temp2 <- tract_to_place %>% 
+    filter(District == district)
+  merge(temp1, temp2, by = "GEOID") %>%
+    group_by(District) %>%
+    summarize(total = sum(total))
 }
 
 # Sample of filtering by a city/place

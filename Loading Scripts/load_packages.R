@@ -3,6 +3,7 @@
 # Dev Tools
 library(devtools)
 library(openxlsx)
+library(dplyr)
 
 # Data manipulation
 library(dplyr)
