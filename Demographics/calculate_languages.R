@@ -9,6 +9,8 @@ facts_russian <- search_label_keyword(year=2017, survey = "acs1", keyword = "Rus
 facts_viet <- search_label_keyword(2017, "acs1", "Vietnamese")
 facts_arabic <- search_label_keyword(2017, "acs1", "Arabic")
 
+# Language
+facts_LEP <- search_label_keyword(2017, "acs1", "speak english less than")
 # Write to a workbook
 demographics <- createWorkbook()
 addWorksheet(demographics, "Spanish")

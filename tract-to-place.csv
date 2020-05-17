@@ -1,0 +1,198 @@
+GEOID,NAME,NAMELSAD,Neighborhood,District
+06075010100,101,Census Tract 101,North Beach,3
+06075010200,102,Census Tract 102,Russian Hill,2
+06075010300,103,Census Tract 103,Russian Hill,3
+06075010400,104,Census Tract 104,North Beach,3
+06075010500,105,Census Tract 105,Financial District,3
+06075010600,106,Census Tract 106,North Beach,3
+06075010700,107,Census Tract 107,Chinatown,3
+06075010800,108,Census Tract 108,Nob Hill,3
+06075010900,109,Census Tract 109,Russian Hill,3
+06075011000,110,Census Tract 110,Russian Hill,3
+06075011100,111,Census Tract 111,Nob Hill,3
+06075011200,112,Census Tract 112,Nob Hill,3
+06075011300,113,Census Tract 113,Chinatown,3
+06075011700,117,Census Tract 117,Financial District,3
+06075011800,118,Census Tract 118,Chinatown,3
+06075011901,119.01,Census Tract 119.01,Nob Hill,3
+06075011902,119.02,Census Tract 119.02,Nob Hill,3
+06075012000,120,Census Tract 120,Nob Hill,3
+06075012100,121,Census Tract 121,Nob Hill,3
+06075012201,122.01,Census Tract 122.01,Tenderloin,6
+06075012202,122.02,Census Tract 122.02,Tenderloin,6
+06075012301,123.01,Census Tract 123.01,Tenderloin,6
+06075012302,123.02,Census Tract 123.02,Tenderloin,3
+06075012401,124.01,Census Tract 124.01,Tenderloin,6
+06075012402,124.02,Census Tract 124.02,Tenderloin,6
+06075012501,125.01,Census Tract 125.01,Tenderloin,6
+06075012502,125.02,Census Tract 125.02,Tenderloin,6
+06075012601,126.01,Census Tract 126.01,Marina,2
+06075012602,126.02,Census Tract 126.02,Marina,2
+06075012700,127,Census Tract 127,Marina,2
+06075012800,128,Census Tract 128,Marina,2
+06075012901,129.01,Census Tract 129.01,Marina,2
+06075012902,129.02,Census Tract 129.02,Marina,2
+06075013000,130,Census Tract 130,Marina,2
+06075013101,131.01,Census Tract 131.01,Pacific Heights,2
+06075013102,131.02,Census Tract 131.02,Pacific Heights,2
+06075013200,132,Census Tract 132,Pacific Heights,2
+06075013300,133,Census Tract 133,Presidio Heights,2
+06075013400,134,Census Tract 134,Pacific Heights,2
+06075013500,135,Census Tract 135,Pacific Heights,2
+06075015100,151,Census Tract 151,Western Addition,2
+06075015200,152,Census Tract 152,Pacific Heights,5
+06075015300,153,Census Tract 153,Pacific Heights,2
+06075015400,154,Census Tract 154,Presidio Heights,2
+06075015500,155,Census Tract 155,Japantown,5
+06075015600,156,Census Tract 156,Lone Mountain/USF,1
+06075015700,157,Census Tract 157,Lone Mountain/USF,1
+06075015801,158.01,Census Tract 158.01,Western Addition,5
+06075015802,158.02,Census Tract 158.02,Western Addition,5
+06075015900,159,Census Tract 159,Western Addition,5
+06075016000,160,Census Tract 160,Western Addition,5
+06075016100,161,Census Tract 161,Western Addition,5
+06075016200,162,Census Tract 162,Hayes Valley,5
+06075016300,163,Census Tract 163,Hayes Valley,5
+06075016400,164,Census Tract 164,Hayes Valley,5
+06075016500,165,Census Tract 165,Lone Mountain/USF,5
+06075016600,166,Census Tract 166,Haight Ashbury,5
+06075016700,167,Census Tract 167,Haight Ashbury,5
+06075016801,168.01,Census Tract 168.01,Hayes Valley,5
+06075016802,168.02,Census Tract 168.02,Hayes Valley,5
+06075016900,169,Census Tract 169,Castro/Upper Market,8
+06075017000,170,Census Tract 170,Castro/Upper Market,8
+06075017101,171.01,Census Tract 171.01,Haight Ashbury,5
+06075017102,171.02,Census Tract 171.02,Haight Ashbury,5
+06075017601,176.01,Census Tract 176.01,South of Market,6
+06075017700,177,Census Tract 177,Mission,9
+06075017801,178.01,Census Tract 178.01,South of Market,6
+06075017802,178.02,Census Tract 178.02,South of Market,6
+06075017902,179.02,Census Tract 179.02,Treasure Island,6
+06075018000,180,Census Tract 180,South of Market,6
+06075020100,201,Census Tract 201,Mission,9
+06075020200,202,Census Tract 202,Mission,8
+06075020300,203,Census Tract 203,Castro/Upper Market,8
+06075020401,204.01,Census Tract 204.01,Castro/Upper Market,8
+06075020402,204.02,Census Tract 204.02,Twin Peaks,8
+06075020500,205,Census Tract 205,Castro/Upper Market,8
+06075020600,206,Census Tract 206,Castro/Upper Market,8
+06075020700,207,Census Tract 207,Mission,8
+06075020800,208,Census Tract 208,Mission,9
+06075020900,209,Census Tract 209,Mission,9
+06075021000,210,Census Tract 210,Mission,8
+06075021100,211,Census Tract 211,Noe Valley,8
+06075021200,212,Census Tract 212,Noe Valley,8
+06075021300,213,Census Tract 213,Noe Valley,8
+06075021400,214,Census Tract 214,Noe Valley,8
+06075021500,215,Census Tract 215,Noe Valley,8
+06075021600,216,Census Tract 216,Noe Valley,8
+06075021700,217,Census Tract 217,Glen Park,8
+06075021800,218,Census Tract 218,Glen Park,8
+06075022600,226,Census Tract 226,Potrero Hill,10
+06075022702,227.02,Census Tract 227.02,Potrero Hill,10
+06075022704,227.04,Census Tract 227.04,Potrero Hill,10
+06075022801,228.01,Census Tract 228.01,Mission,9
+06075022802,228.02,Census Tract 228.02,Mission,10
+06075022803,228.03,Census Tract 228.03,Mission,9
+06075022901,229.01,Census Tract 229.01,Mission,9
+06075022902,229.02,Census Tract 229.02,Mission,9
+06075022903,229.03,Census Tract 229.03,Mission,9
+06075023001,230.01,Census Tract 230.01,Bayview Hunters Point,10
+06075023003,230.03,Census Tract 230.03,Bayview Hunters Point,10
+06075023102,231.02,Census Tract 231.02,Bayview Hunters Point,10
+06075023103,231.03,Census Tract 231.03,Bayview Hunters Point,10
+06075023200,232,Census Tract 232,Bayview Hunters Point,10
+06075023300,233,Census Tract 233,Bayview Hunters Point,10
+06075023400,234,Census Tract 234,Bayview Hunters Point,10
+06075025100,251,Census Tract 251,Bernal Heights,9
+06075025200,252,Census Tract 252,Bernal Heights,9
+06075025300,253,Census Tract 253,Bernal Heights,9
+06075025401,254.01,Census Tract 254.01,Bernal Heights,9
+06075025402,254.02,Census Tract 254.02,Bernal Heights,9
+06075025403,254.03,Census Tract 254.03,Bernal Heights,9
+06075025500,255,Census Tract 255,Outer Mission,11
+06075025600,256,Census Tract 256,Excelsior,9
+06075025701,257.01,Census Tract 257.01,Portola,9
+06075025702,257.02,Census Tract 257.02,Portola,9
+06075025800,258,Census Tract 258,Portola,9
+06075025900,259,Census Tract 259,Portola,9
+06075026001,260.01,Census Tract 260.01,Excelsior,11
+06075026002,260.02,Census Tract 260.02,Excelsior,11
+06075026003,260.03,Census Tract 260.03,Excelsior,11
+06075026004,260.04,Census Tract 260.04,Excelsior,11
+06075026100,261,Census Tract 261,Outer Mission,11
+06075026200,262,Census Tract 262,Outer Mission,11
+06075026301,263.01,Census Tract 263.01,Excelsior,11
+06075026302,263.02,Census Tract 263.02,Excelsior,11
+06075026303,263.03,Census Tract 263.03,Excelsior,11
+06075026401,264.01,Census Tract 264.01,Visitacion Valley,10
+06075026402,264.02,Census Tract 264.02,Visitacion Valley,10
+06075026403,264.03,Census Tract 264.03,Visitacion Valley,10
+06075026404,264.04,Census Tract 264.04,Visitacion Valley,10
+06075030101,301.01,Census Tract 301.01,Inner Sunset,5
+06075030102,301.02,Census Tract 301.02,Inner Sunset,7
+06075030201,302.01,Census Tract 302.01,Inner Sunset,5
+06075030202,302.02,Census Tract 302.02,Inner Sunset,5
+06075030301,303.01,Census Tract 303.01,Inner Sunset,7
+06075030302,303.02,Census Tract 303.02,Inner Sunset,7
+06075030400,304,Census Tract 304,West of Twin Peaks,7
+06075030500,305,Census Tract 305,Twin Peaks,7
+06075030600,306,Census Tract 306,West of Twin Peaks,7
+06075030700,307,Census Tract 307,West of Twin Peaks,7
+06075030800,308,Census Tract 308,West of Twin Peaks,7
+06075030900,309,Census Tract 309,West of Twin Peaks,7
+06075031000,310,Census Tract 310,West of Twin Peaks,7
+06075031100,311,Census Tract 311,West of Twin Peaks,7
+06075031201,312.01,Census Tract 312.01,Oceanview/Merced/Ingleside,11
+06075031202,312.02,Census Tract 312.02,Oceanview/Merced/Ingleside,11
+06075031301,313.01,Census Tract 313.01,Oceanview/Merced/Ingleside,11
+06075031302,313.02,Census Tract 313.02,Oceanview/Merced/Ingleside,11
+06075031400,314,Census Tract 314,Oceanview/Merced/Ingleside,11
+06075032601,326.01,Census Tract 326.01,Sunset/Parkside,4
+06075032602,326.02,Census Tract 326.02,Sunset/Parkside,4
+06075032700,327,Census Tract 327,Sunset/Parkside,4
+06075032801,328.01,Census Tract 328.01,Sunset/Parkside,4
+06075032802,328.02,Census Tract 328.02,Sunset/Parkside,4
+06075032901,329.01,Census Tract 329.01,Sunset/Parkside,4
+06075032902,329.02,Census Tract 329.02,Sunset/Parkside,4
+06075033000,330,Census Tract 330,Sunset/Parkside,4
+06075033100,331,Census Tract 331,Sunset/Parkside,7
+06075033201,332.01,Census Tract 332.01,Lakeshore,7
+06075033203,332.03,Census Tract 332.03,Lakeshore,7
+06075033204,332.04,Census Tract 332.04,Lakeshore,7
+06075035100,351,Census Tract 351,Sunset/Parkside,4
+06075035201,352.01,Census Tract 352.01,Sunset/Parkside,4
+06075035202,352.02,Census Tract 352.02,Sunset/Parkside,4
+06075035300,353,Census Tract 353,Sunset/Parkside,4
+06075035400,354,Census Tract 354,Sunset/Parkside,4
+06075040100,401,Census Tract 401,Inner Richmond,1
+06075040200,402,Census Tract 402,Inner Richmond,1
+06075042601,426.01,Census Tract 426.01,Outer Richmond,1
+06075042602,426.02,Census Tract 426.02,Outer Richmond,1
+06075042700,427,Census Tract 427,Outer Richmond,1
+06075042800,428,Census Tract 428,Seacliff,2
+06075045100,451,Census Tract 451,Inner Richmond,1
+06075045200,452,Census Tract 452,Inner Richmond,1
+06075047600,476,Census Tract 476,Outer Richmond,1
+06075047701,477.01,Census Tract 477.01,Outer Richmond,1
+06075047702,477.02,Census Tract 477.02,Outer Richmond,1
+06075047801,478.01,Census Tract 478.01,Outer Richmond,1
+06075047802,478.02,Census Tract 478.02,Outer Richmond,1
+06075047901,479.01,Census Tract 479.01,Outer Richmond,1
+06075047902,479.02,Census Tract 479.02,Outer Richmond,1
+06075060100,601,Census Tract 601,Presidio,2
+06075060400,604,Census Tract 604,Lakeshore,7
+06075060502,605.02,Census Tract 605.02,Visitacion Valley,10
+06075060700,607,Census Tract 607,Mission Bay,6
+06075061000,610,Census Tract 610,Bayview Hunters Point,10
+06075061100,611,Census Tract 611,Chinatown,3
+06075061200,612,Census Tract 612,Bayview Hunters Point,10
+06075061400,614,Census Tract 614,Potrero Hill,10
+06075061500,615,Census Tract 615,Financial District,6
+06075980200,9802,Census Tract 9802,Lincoln Park,1
+06075980300,9803,Census Tract 9803,Golden Gate Park,1
+06075980401,9804.01,Census Tract 9804.01,N/A,N/A
+06075980501,9805.01,Census Tract 9805.01,McLaren Park,10
+06075980600,9806,Census Tract 9806,Bayview Hunters Point,10
+06075980900,9809,Census Tract 9809,Bayview Hunters Point,10
+06075990100,9901,Census Tract 9901,N/A,N/A
