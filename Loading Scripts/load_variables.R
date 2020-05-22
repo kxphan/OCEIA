@@ -6,7 +6,7 @@ census_api_key(API_KEY, install=TRUE)
 options(tibble.print_max = 110)
 
 # All Census Variables
-census_yr <- 2017
+census_yr <- 2018
 census_dset <- "acs5"
 census_var <- c("")
 census_geog <- c("county")
