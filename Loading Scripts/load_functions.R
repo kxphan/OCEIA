@@ -86,3 +86,28 @@ search_category_keyword <-function(year, survey, keyword) {
     filter(str_detect(tolower(dataset$concept), tolower(keyword)))
   merge(dataset, getPopSF(dataset$name, year, survey), by.x='name', by.y='variable')
 }
+
+# Turn tracts --> Supervisor Districts
+tract2geo <- function(dataset){
+  dataset$GEOID <- substring(dataset$GEOID, 2)
+  
+  # Merge with the dataset
+  temp <- merge(dataset, map.oldgeo.newgeo, 
+                by.x = 'GEOID', by.y = 'GEOID10', all = TRUE)
+  
+  select_vars <- c("GEOID", "GEOID20", "variable", "total")
+  temp <- temp[select_vars]
+  
+  result <- merge(temp, neighborhood,
+                  by.x = "GEOID20", "TRACTID")
+  
+  select_vars <- c("variable", "GEOID", "Neighborhood", "District", "total")
+  result <- result[select_vars]
+  result[complete.cases(result), ]
+}
+
+tract2sup <- function(dataset){
+  result <- tract2geo(dataset) %>%
+    group_by(District) %>%
+    summarize(total = sum(total))
+}
