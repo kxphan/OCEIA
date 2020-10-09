@@ -2,7 +2,7 @@
 
 # Set up environment.
 API_KEY <- 'bbd0eb2204dbf8cc07f4f8eee063fe7eca0969cd'
-census_api_key(API_KEY, install=TRUE)
+census_api_key(API_KEY, install=TRUE, overwrite = TRUE)
 options(tibble.print_max = 110)
 
 # All Census Variables
