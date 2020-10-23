@@ -196,10 +196,46 @@ X14_curr <- X14_services_assess %>%
   filter(Year == "Fiscal Year 2019-2020")
 summary(X14_curr)
 table(X14_curr$Curr.Bilingual.Employees.Adequate)
+barplot(height = c(40, 8),
+        names.arg = c("Yes", "No"),
+        ylab = "Number of Departments",
+        main = "Current number of bilingual employees adequate?",
+        col = c("green", "red"))
+
 table(X14_curr$Availability.Recorded.Messages)
+barplot(height = c(17, 17, 16),
+        names.arg = c("Excellent", "Adequate", "Needs Improvement"),
+        ylab = "Number of Departments",
+        xlab = "Quality",
+        main = "Recorded Messages",
+        col = c("green","yellow", "red"))
+
 table(X14_curr$Quality.LEP.Notices)
+
+barplot(height = c(25, 25, 3),
+        names.arg = c("Excellent", "Adequate", "Needs Improvement"),
+        ylab = "Number of Departments",
+        xlab = "Quality",
+        main = "Posted LEP Notices",
+        col = c("green","yellow", "red"))
+
 table(X14_curr$Translation.Services.Procedure)
+
+barplot(height = c(30, 18, 3),
+        names.arg = c("Excellent", "Adequate", "Needs Improvement"),
+        ylab = "Number of Departments",
+        xlab = "Quality",
+        main = "Translation Service Procedures",
+        col = c("green","yellow", "red"))
+
 table(X14_curr$Interpretation.Procedures)
+
+barplot(height = c(27, 22, 2),
+        names.arg = c("Excellent", "Adequate", "Needs Improvement"),
+        ylab = "Number of Departments",
+        xlab = "Quality",
+        main = "Interpretation Service Procedures",
+        col = c("green","yellow", "red"))
 
 #### BUDGET ####
 X18_curr <- X18_budget %>%
