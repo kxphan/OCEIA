@@ -1,0 +1,246 @@
+---
+title: "LEP Populations Per District"
+output: 
+  html_notebook:
+    toc: true
+    toc_float: true
+    smooth_scroll: true
+---
+
+Note: This code will not run without other scripts from other packages. This should primarily be used by the data and research specialist in the case that the packages are not cleaned up and ready for active use.
+
+# Total Population
+```{r message=FALSE, warning=FALSE, include=FALSE}
+district_var <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "LEP.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(LEP_var, 2019, "acs5", d)
+  names(result) <- c("District", "LEP.Population")
+  df <- rbind(df, result)
+}
+
+LEP_Table <- df
+
+```
+
+
+```{r}
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "Total.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum("C16001_001", 2019, "acs5", d)
+  names(result) <- c("District", "Total.Population")
+  df <- rbind(df, result)
+}
+
+Total_Pop_Table <- df
+
+Total_Pop_Table$LEP.Population <- LEP_Table$LEP.Population
+Total_Pop_Table$LEP.Percentage <- LEP_Table$LEP.Population/Total_Pop_Table$Total.Population
+
+Total_Pop_Table
+```
+
+# Chinese Language
+```{r message=FALSE, warning=FALSE, include=FALSE}
+Chinese_LEP <- "C16001_023"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "LEP.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(Chinese_LEP, 2019, "acs5", d)
+  names(result) <- c("District", "LEP.Population")
+  df <- rbind(df, result)
+}
+
+Chinese_LEP_Table <- df
+
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+Chinese_Total <- "C16001_021"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "Total.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(Chinese_Total, 2019, "acs5", d)
+  names(result) <- c("District", "Total.Population")
+  df <- rbind(df, result)
+}
+Chinese_Total_Table <- df
+
+Chinese_Total_Table$LEP.Percentage <- Chinese_LEP_Table$LEP.Population/Chinese_Total_Table$Total.Population
+Chinese_Total_Table$LEP.Population <- Chinese_LEP_Table$LEP.Population
+
+Chinese_Total_Table
+
+```
+
+# Filipino Language
+```{r message=FALSE, warning=FALSE, include=FALSE}
+Fil_LEP_var <- "C16001_029"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "LEP.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(Fil_LEP_var, 2019, "acs5", d)
+  names(result) <- c("District", "LEP.Population")
+  df <- rbind(df, result)
+}
+
+Fil_LEP_Table <- df
+
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+Fil_Total <- "C16001_027"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "Total.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(Fil_Total, 2019, "acs5", d)
+  names(result) <- c("District", "Total.Population")
+  df <- rbind(df, result)
+}
+Fil_Total_Table <- df
+
+Fil_Total_Table$LEP.Population <- Fil_LEP_Table$LEP.Population
+Fil_Total_Table$LEP.Percentage <- Fil_LEP_Table$LEP.Population/Fil_Total_Table$Total.Population
+
+Fil_Total_Table
+
+```
+
+# Spanish Language
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+Spanish_LEP <- "C16001_005"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "LEP.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(Spanish_LEP, 2019, "acs5", d)
+  names(result) <- c("District", "LEP.Population")
+  df <- rbind(df, result)
+}
+
+Spanish_LEP_Table <- df
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+Spanish_Total <- "C16001_003"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "Total.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(Spanish_Total, 2019, "acs5", d)
+  names(result) <- c("District", "Total.Population")
+  df <- rbind(df, result)
+}
+Spanish_Total_Table <- df
+
+Spanish_Total_Table$LEP.Population <- Spanish_LEP_Table$LEP.Population
+Spanish_Total_Table$LEP.Percentage <- Spanish_LEP_Table$LEP.Population/Spanish_Total_Table$Total.Population
+
+Spanish_Total_Table
+
+```
+
+# Vietnamese
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+Viet_LEP <- "C16001_026"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "LEP.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(Viet_LEP, 2019, "acs5", d)
+  names(result) <- c("District", "LEP.Population")
+  df <- rbind(df, result)
+}
+
+Viet_LEP_Table <- df
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+Viet_Total <- "C16001_024"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "Total.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(Viet_Total, 2019, "acs5", d)
+  names(result) <- c("District", "Total.Population")
+  df <- rbind(df, result)
+}
+Viet_Total_Table <- df
+
+Viet_Total_Table$LEP.Population <- Viet_LEP_Table$LEP.Population
+Viet_Total_Table$LEP.Percentage <- Viet_LEP_Table$LEP.Population/Viet_Total_Table$Total.Population
+
+Viet_Total_Table
+
+```
+
+# Russian
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+RUS_LEP <- "C16001_014"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "LEP.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(RUS_LEP, 2019, "acs5", d)
+  names(result) <- c("District", "LEP.Population")
+  df <- rbind(df, result)
+}
+
+RUS_LEP_Table <- df
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+RUS_Total <- "C16001_012"
+
+df <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("District", "Total.Population")
+colnames(df) <- x
+
+for(d in district_var){
+  result <- getDistrictSum(RUS_Total, 2019, "acs5", d)
+  names(result) <- c("District", "Total.Population")
+  df <- rbind(df, result)
+}
+RUS_Total_Table <- df
+
+RUS_Total_Table$LEP.Population <- RUS_LEP_Table$LEP.Population
+RUS_Total_Table$LEP.Percentage <- RUS_LEP_Table$LEP.Population/RUS_Total_Table$Total.Population
+
+RUS_Total_Table
+
+```

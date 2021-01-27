@@ -7,7 +7,9 @@ output:
     smooth_scroll: true
 ---
 
-# Intake Method
+# Intake Method {.tabset}
+
+## Table
 ```{r Intake Method, echo=TRUE, warning=FALSE, paged.print=TRUE}
 method_intake <- X5_intake %>% filter(Department != "Test Department") %>% group_by(Year) %>% filter(Intake == TRUE) %>% count(Intake)
 method_survey <-X5_intake %>% filter(Department != "Test Department") %>% group_by(Year) %>% filter(Survey == TRUE) %>% count(Survey)
@@ -15,16 +17,22 @@ method_tele <- X5_intake %>% filter(Department != "Test Department") %>% group_b
 
 temp <- merge(method_intake, method_survey, by = "Year") %>% select(Year, n.x, n.y) %>% rename(Intake = n.x, Survey = n.y)
 method <- merge(temp, method_tele, by = "Year") %>% select(Year, Intake, Survey, n) %>% rename(Telephonic = n) 
-method_pivot <- pivot_longer(method, !Year, names_to = "Method", values_to = "count")
+
+method
+
 ```
 
+## Graph
 ```{r Intake Method — Graph, echo=TRUE}
+
+method_pivot <- pivot_longer(method, !Year, names_to = "Method", values_to = "count")
+
 ggplot(data = method_pivot, aes(x=Year, y = count, group = Method)) + 
   geom_line(aes(color = Method, size = Method, linetype = Method)) +
   geom_point() + 
   scale_size_manual(values = c(1.5, 0.8, 0.8)) + 
   scale_linetype_manual(values=c("solid", "twodash", "twodash")) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Method for Counting Client Interactions") +
   ylab("Number of Departments") + 
   xlab("Fiscal Year")
@@ -46,7 +54,7 @@ ggplot(data = client_total, aes(x=Year, y = total, group = 1)) +
   geom_point() + 
   scale_size_manual(values = c(1.5)) + 
   scale_linetype_manual(values=c("solid")) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Client Interactions") +
   ylab("Number of Total Client Interactions") + 
   xlab("Fiscal Year")
@@ -61,24 +69,30 @@ ggplot(data = client_total_manual, aes(x=Year, y = total, group = 1)) +
   geom_point() + 
   scale_size_manual(values = c(1.5)) + 
   scale_linetype_manual(values=c("solid")) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Client Interactions") +
   ylab("Number of Total Client Interactions") + 
   xlab("Fiscal Year")
 ```
 
 ## By Language
-```{r Graph - LEP Clients by Language, echo=TRUE}
+```{r CLients by Language Table, echo=TRUE}
 clients_language <- X6_client %>% group_by(Year) %>% summarize(CAN = sum(LEP.CAN, na.rm = TRUE), MAN = sum(LEP.MAN, na.rm = TRUE), 
                                            SPA = sum(LEP.SPA, na.rm = TRUE), FIL = sum(LEP.FIL, na.rm = TRUE),
                                            RUS = sum(LEP.RUS, na.rm = TRUE), VIET = sum(LEP.VIET, na.rm = TRUE),
                                            OTH = sum(LEP.OTHER, na.rm = TRUE)) %>% filter(!is.na(Year))
+
+clients_language
+
+```
+
+```{r Clients by Language Graph, echo=TRUE}
 clients_pivot <- pivot_longer(clients_language, !Year, names_to = "Language", values_to = "count")
 
 ggplot(data = clients_pivot, aes(x=Year, y = count, group = Language)) + 
   geom_line(aes(color = Language)) +
   geom_point(aes(color = Language)) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Client Interactions over Time by Language") +
   ylab("Number of Client Interactions") + 
   xlab("Fiscal Year")
@@ -100,24 +114,28 @@ ggplot(data = translations, aes(x=Year, y = total, group = 1)) +
   geom_point() + 
   scale_size_manual(values = c(1.5)) + 
   scale_linetype_manual(values=c("solid")) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Translations") +
   ylab("Number of Translations") + 
   xlab("Fiscal Year")
 ```
 
 ## By Language
-```{r Translations - Language, echo=TRUE}
+```{r Translations - Language Table, echo=TRUE}
 translations_language <- X7_translations %>% group_by(Year) %>% summarize(CAN = sum(Translations.CHI, na.rm = TRUE), 
                                            SPA = sum(Translations.SPA, na.rm = TRUE), FIL = sum(Translations.FIL, na.rm = TRUE),
                                            RUS = sum(Translations.RUS, na.rm = TRUE), VIET = sum(Translations.VIET, na.rm = TRUE),
                                            OTH = sum(Translations.OTHER, na.rm = TRUE)) %>% filter(!is.na(Year))
+translations_language
+```
+
+```{r Translations - Language Graph, echo=TRUE}
 translations_pivot <- pivot_longer(translations_language, !Year, names_to = "Language", values_to = "count")
 
 ggplot(data = translations_pivot, aes(x=Year, y = count, group = Language)) + 
   geom_line(aes(color = Language)) +
   geom_point(aes(color = Language)) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Translations over Time by Language") +
   ylab("Number of Translations by Language") + 
   xlab("Fiscal Year")
@@ -138,25 +156,29 @@ ggplot(data = interpret_phone, aes(x=Year, y = total, group = 1)) +
   geom_point() + 
   scale_size_manual(values = c(1.5)) + 
   scale_linetype_manual(values=c("solid")) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Total Phone Interpretations over Time") +
   ylab("Number of Phone Interpretations") + 
   xlab("Fiscal Year")
 ```
 
 ## By Language
-```{r Phone Interpretations - Language, echo=TRUE}
+```{r Phone Interpretations - Language Table, echo=TRUE}
 interpret_phone_language <- X8_interpret_phone %>% group_by(Year) %>% summarize(CAN = sum(Calls.CAN, na.rm = TRUE), MAN = sum(Calls.MAN, na.rm = TRUE), 
                                            SPA = sum(Calls.SPA, na.rm = TRUE), FIL = sum(Calls.FIL, na.rm = TRUE),
                                            RUS = sum(Calls.RUS, na.rm = TRUE), VIET = sum(Calls.VIET, na.rm = TRUE),
                                            OTH = sum(Calls.OTHER, na.rm = TRUE)) %>% filter(!is.na(Year))
 
+interpret_phone_language
+```
+
+```{r Phone Interpretations - Language Graph, echo=TRUE}
 interpret_phone_pivot <- pivot_longer(interpret_phone_language, !Year, names_to = "Language", values_to = "count")
 
 ggplot(data = interpret_phone_pivot, aes(x=Year, y = count, group = Language)) + 
   geom_line(aes(color = Language)) +
   geom_point(aes(color = Language)) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Phone Interpretations over Time by Language") +
   ylab("Number of Phone Interpretations") + 
   xlab("Fiscal Year")
@@ -179,26 +201,30 @@ ggplot(data = interpret_person, aes(x=Year, y = total, group = 1)) +
   ylim(0, 150000) +
   scale_size_manual(values = c(1.5)) + 
   scale_linetype_manual(values=c("solid")) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Total In-Person Interpretations over Time") +
   ylab("Number of In-Person Interpretations") + 
   xlab("Fiscal Year")
 ```
 
 ## By Language
-```{r In-Person Language Graph, echo=TRUE}
+```{r In-Person Language Table, echo=TRUE}
 interpret_person_language <- X9_interpret_person %>% group_by(Year) %>% summarize(CAN = sum(Interpretations.CAN, na.rm = TRUE), 
                                                                                   MAN = sum(Interpretations.MAN, na.rm = TRUE), 
                                            SPA = sum(Interpretations.SPA, na.rm = TRUE), FIL = sum(Interpretations.FIL, na.rm = TRUE),
                                            RUS = sum(Interpretations.RUS, na.rm = TRUE), VIET = sum(Interpretations.VIET, na.rm = TRUE),
                                            OTH = sum(Interpretations.OTHER, na.rm = TRUE)) %>% filter(!is.na(Year))
 
+interpret_person_language
+```
+
+```{r In-Person Language Graph, echo=TRUE}
 interpret_person_pivot <- pivot_longer(interpret_person_language, !Year, names_to = "Language", values_to = "count")
 
 ggplot(data = interpret_person_pivot, aes(x=Year, y = count, group = Language)) + 
   geom_line(aes(color = Language)) +
   geom_point(aes(color = Language)) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "In-Person Interpretations over Time by Language") +
   ylab("Number of In-Person Interpretations") + 
   xlab("Fiscal Year")
@@ -218,25 +244,28 @@ ggplot(data = staffing, aes(x=Year, y = total, group = 1)) +
   ylim(0, 6500) +
   scale_size_manual(values = c(1.5)) + 
   scale_linetype_manual(values=c("solid")) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Total Multilingual Staff over Time") +
   ylab("Number of Staff") + 
   xlab("Fiscal Year")
 ```
 
 ## By Language
-```{r Multilingual Staff - Language Graph, echo=TRUE}
+```{r Multilingual Staff - Language Table, echo=TRUE}
 staffing_language <- X11_staffing %>% group_by(Year) %>% summarize(CAN = sum(Staff.CAN, na.rm = TRUE), MAN = sum(Staff.MAN, na.rm = TRUE), 
                                            SPA = sum(Staff.SPA, na.rm = TRUE), FIL = sum(Staff.FIL, na.rm = TRUE),
                                            RUS = sum(Staff.RUS, na.rm = TRUE), VIET = sum(Staff.VIET, na.rm = TRUE),
                                            OTH = sum(Staff.OTHER, na.rm = TRUE)) %>% filter(!is.na(Year))
+staffing_language
+```
 
+```{r Multilingual Staff - Language Graph, echo=TRUE}
 staffing_pivot <- pivot_longer(staffing_language, !Year, names_to = "Language", values_to = "count")
 
 ggplot(data = staffing_pivot, aes(x=Year, y = count, group = Language)) + 
   geom_line(aes(color = Language)) +
   geom_point(aes(color = Language)) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Multilingual Staff over Time by Language") +
   ylab("Number of Multilingual Staff") + 
   xlab("Fiscal Year")
@@ -247,18 +276,17 @@ ggplot(data = staffing_pivot, aes(x=Year, y = count, group = Language)) +
 staff_cert <- X11_staffing %>% group_by(Year) %>% summarize(total = sum(Staff.Total.Multilingual.Cert, na.rm = TRUE)) %>% filter(!is.na(Year))
 
 ggplot(data = staff_cert, aes(x=Year, y = total, group = 1)) + 
-  geom_line(na.rm = TRUE) +
+  geom_line() +
   geom_point() + 
-  ylim(0, 3000)
-  scale_size_manual(values = c(1.5)) + 
-  scale_linetype_manual(values=c("solid")) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  ylim(0, 3000) + 
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Total Certified Multilingual Staff over Time") +
   ylab("Number of Staff") + 
   xlab("Fiscal Year")
 ```
 
-# Department Certifications for Multilingual Staff
+# Department Certifications for Multilingual Staff {.tabset}
+##Table
 
 ```{r Certification Data, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 cert <- X12_bilingual_cert %>% group_by(Year) %>%
@@ -270,17 +298,19 @@ cert.oth <- cert %>% filter(Cert.Other == TRUE) %>% group_by(Year) %>% summarise
 
 temp <- merge(cert.dhr, cert.ext, by = "Year") %>% select(Year, total.x, total.y) %>% rename(DHR = total.x, External = total.y)
 cert_all <- merge(temp, cert.oth, by = "Year") %>% select(Year, DHR, External, total) %>% rename(Other = total) 
-cert_pivot <- pivot_longer(cert_all, !Year, names_to = "Method", values_to = "count")
+cert_all
 
 ```
 
+## Graph
 ```{r Certification Graph, echo=TRUE}
+cert_pivot <- pivot_longer(cert_all, !Year, names_to = "Method", values_to = "count")
 ggplot(data = cert_pivot, aes(x=Year, y = count, group = Method)) + 
   geom_line(aes(color = Method, linetype = Method, size = Method)) +
   geom_point() + 
   scale_size_manual(values = c(0.8, 0.8, 0.8)) + 
   scale_linetype_manual(values = c("solid", "solid", "solid")) +
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Multilingual Certification Methods") +
   ylab("Number of Departments") + 
   xlab("Fiscal Year")
@@ -292,7 +322,7 @@ lao_yes <- X13_dep_lao %>% group_by(Year) %>% filter(Department.Has.Language.Pol
 ggplot(data = lao_yes, aes(x=Year, y = n, group = 1)) + 
   geom_line() +
   geom_point() + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Departments with Internal Language Policies") +
   ylab("Number of Departments") + 
   xlab("Fiscal Year")
@@ -303,11 +333,14 @@ ggplot(data = lao_yes, aes(x=Year, y = n, group = 1)) +
 ## Employees
 ```{r Staffing, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 staff_yes <- X14_services_assess %>% group_by(Year) %>% filter(Curr.Bilingual.Employees.Adequate == "Yes") %>%  count(Curr.Bilingual.Employees.Adequate)
+staff_yes
+```
 
+```{r Staffing Graph, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 ggplot(data = staff_yes, aes(x=Year, y = n, group = 1)) + 
   geom_line() +
   geom_point() + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Departments with Adequate Number of Multilingual Employees") +
   ylab("Number of Departments") + 
   xlab("Fiscal Year")
@@ -316,13 +349,18 @@ ggplot(data = staff_yes, aes(x=Year, y = n, group = 1)) +
 ## Recorded Messages
 ```{r Messages, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 messages_yes <- X14_services_assess %>% group_by(Year) %>% filter(!is.na(Availability.Recorded.Messages)) %>% count(Availability.Recorded.Messages)
+messages_yes
+```
+
+
+```{r Messages Graph, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 ggplot(data = messages_yes, aes(x=Year, y = n, group = Availability.Recorded.Messages)) + 
   geom_line(aes(color = Availability.Recorded.Messages, linetype = Availability.Recorded.Messages, size = Availability.Recorded.Messages)) +
   geom_point() + 
   scale_size_manual(values = c(0.8, 1.5, 0.8)) + 
   scale_linetype_manual(values=c("twodash", "solid", "twodash")) + 
   scale_color_manual(values=c('#32CD32', '#008000', '#FF4500')) +
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Quality of Available Recorded Messages") +
   ylab("Number of Departments") + 
   xlab("Fiscal Year")
@@ -331,14 +369,17 @@ ggplot(data = messages_yes, aes(x=Year, y = n, group = Availability.Recorded.Mes
 ## LEP Notices
 ```{r LEP Notices, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 notices <- X14_services_assess %>% group_by(Year) %>% filter(!is.na(Quality.LEP.Notices)) %>% count(Quality.LEP.Notices)
+notices
+```
 
+```{r LEP Notices Graph, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 ggplot(data = notices, aes(x=Year, y = n, group = Quality.LEP.Notices)) + 
   geom_line(aes(color = Quality.LEP.Notices, linetype = Quality.LEP.Notices, size = Quality.LEP.Notices)) +
   geom_point() + 
   scale_size_manual(values = c(0.8, 1.5, 0.8)) + 
   scale_linetype_manual(values=c("twodash", "solid", "twodash")) + 
   scale_color_manual(values=c('#32CD32', '#008000', '#FF4500')) +
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Quality of LEP Notices") +
   ylab("Number of Departments") + 
   xlab("Fiscal Year")
@@ -347,14 +388,16 @@ ggplot(data = notices, aes(x=Year, y = n, group = Quality.LEP.Notices)) +
 ## Translation Services
 ```{r Translation Services, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 translation_services <- X14_services_assess %>% group_by(Year) %>% filter(!is.na(Translation.Services.Procedure)) %>% count(Translation.Services.Procedure)
-
+translation_services
+```
+```{r Translation Services Graph, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 ggplot(data = translation_services, aes(x=Year, y = n, group = Translation.Services.Procedure)) + 
   geom_line(aes(color = Translation.Services.Procedure, linetype = Translation.Services.Procedure, size = Translation.Services.Procedure)) +
   geom_point() + 
   scale_size_manual(values = c(0.8, 1.5, 0.8)) + 
   scale_linetype_manual(values=c("twodash", "solid", "twodash")) + 
   scale_color_manual(values=c('#32CD32', '#008000', '#FF4500')) +
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Quality of Internal Translation Services Procedure") +
   ylab("Number of Departments") + 
   xlab("Fiscal Year")
@@ -364,6 +407,11 @@ ggplot(data = translation_services, aes(x=Year, y = n, group = Translation.Servi
 ## Interpretation Services
 ```{r Interpretation Procedures, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 interpret_services <- X14_services_assess %>% group_by(Year) %>% filter(!is.na(Interpretation.Procedures)) %>% count(Interpretation.Procedures)
+interpret_services
+
+```
+
+```{r Interpretation Procedures Graph, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 
 ggplot(data = interpret_services, aes(x=Year, y = n, group = Interpretation.Procedures)) + 
   geom_line(aes(color = Interpretation.Procedures, linetype = Interpretation.Procedures, size = Interpretation.Procedures)) +
@@ -371,25 +419,28 @@ ggplot(data = interpret_services, aes(x=Year, y = n, group = Interpretation.Proc
   scale_size_manual(values = c(0.8, 1.5, 0.8)) + 
   scale_linetype_manual(values=c("twodash", "solid", "twodash")) + 
   scale_color_manual(values=c('#32CD32', '#008000', '#FF4500')) +
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Quality of Internal Interpretation Services Procedure") +
   ylab("Number of Departments") + 
   xlab("Fiscal Year")
 ```
 # Department Language Services Budget
-```{r Budget Analysis & Graph, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
+```{r Budget Analysis, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 budget <- X18_budget %>%
   group_by(Year) %>%
   summarize(total = sum(Lang.Services.Budget, na.rm = TRUE))
 
 budget <- budget[-c(7),]
+budget
+```
 
+```{r Budget Analysis & Graph, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 ggplot(data = budget, aes(x=Year, y = total, group = 1)) + 
   geom_line(na.rm = TRUE) +
   geom_point() + 
   scale_size_manual(values = c(1.5)) + 
   scale_linetype_manual(values=c("solid")) + 
-  scale_x_discrete(labels = c("2014-16", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
+  scale_x_discrete(labels = c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20")) +
   labs(title = "Total Language Service Budget over Time") +
   ylab("Budget, $") + 
   xlab("Fiscal Year")

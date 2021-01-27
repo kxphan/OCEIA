@@ -5,8 +5,12 @@ API_KEY <- 'bbd0eb2204dbf8cc07f4f8eee063fe7eca0969cd'
 census_api_key(API_KEY, install=TRUE, overwrite = TRUE)
 options(tibble.print_max = 110)
 
+# Create tract dataset
+tract_to_place <- read.csv("tract-to-place.csv", header = TRUE)
+tract_to_place$GEOID <- paste0("0", tract_to_place$GEOID)
+
 # All Census Variables
-census_yr <- 2018
+census_yr <- 2019
 census_dset <- "acs5"
 census_var <- c("")
 census_geog <- c("county")
@@ -22,7 +26,7 @@ county_bay <- c(097, 041, 055, 095, 013, 081, 075, 001, 085)
 # Look at all Census Variables
 v17<- load_variables(census_yr, census_dset, cache = TRUE)
 v14 <- load_variables(2014, census_dset, cache = TRUE)
-v18 <- load_variables(2018, census_dset, cache=TRUE)
+v19 <- load_variables(2019, census_dset, cache=TRUE)
 
 # LEP & Citizenship
 LEP_native <-  c("B16008_007", "B16008_010", "B16008_015","B16008_018" )

@@ -1,16 +1,18 @@
 # Demographics Analyses
 
 # Run a sample script
-sample_language <- search_category_keyword(2017, "acs5", "Language Spoken")
-facts_spanish <- search_label_keyword(year = 2017, survey = "acs1", keyword = "Spanish")
-facts_filipino <- search_label_keyword(year = 2017, survey = "acs1", keyword = "Filipino")
-facts_chinese <- search_label_keyword(year=2017, survey = "acs1", keyword = "Chinese")
-facts_russian <- search_label_keyword(year=2017, survey = "acs1", keyword = "Russian")
-facts_viet <- search_label_keyword(2017, "acs1", "Vietnamese")
-facts_arabic <- search_label_keyword(2017, "acs1", "Arabic")
+sample_language <- search_category_keyword(2019, "acs5", "Language Spoken")
+
+facts_spanish   <- search_label_keyword(year = 2019, survey = "acs5", keyword = "Spanish")
+facts_filipino  <- search_label_keyword(year = 2019, survey = "acs5", keyword = "Filipino")
+facts_chinese   <- search_label_keyword(year = 2019, survey = "acs5", keyword = "Chinese")
+facts_russian   <- search_label_keyword(year = 2019, survey = "acs5", keyword = "Russian")
+facts_viet      <- search_label_keyword(year = 2019, survey = "acs5", keyword = "Vietnamese")
+facts_arabic    <- search_label_keyword(year = 2019, survey = "acs5", keyword = "Arabic")
 
 # Language
 facts_LEP <- search_label_keyword(2017, "acs1", "speak english less than")
+
 # Write to a workbook
 demographics <- createWorkbook()
 addWorksheet(demographics, "Spanish")

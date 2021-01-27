@@ -1,6 +1,12 @@
 ## All functions used to calculate populations. 
 ## May require some cleaning and documentation.
 
+# Load in the tract-to-place CSV
+tract_to_place <- read.csv("tract-to-place.csv", header = TRUE)
+
+# Clean it!
+tract_to_place$GEOID <- paste0("0", tract_to_place$GEOID)
+
 # Get all populations
 getPop <- function(var, year, survey){
   get_acs(geography = "county",
@@ -32,7 +38,6 @@ getPopBay <- function(var, year, survey) {
     group_by(variable) %>%
     summarise(total=sum(total))
 }
-
 
 # Sample of filtering by a county
 getPopSF <- function(var, year, survey) {
